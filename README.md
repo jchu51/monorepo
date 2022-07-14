@@ -35,3 +35,17 @@ A monorepo is a group of small projects that can be combined to build bigger pro
       },
    ```
 8. Create `libs/utils/src/index.ts`
+9. `npm i -D -W concurrently`
+10. run all the project together, Add to root package script
+
+    ```"scripts": {
+    "dev": "concurrently \"npm run dev:utils\" \"npm run dev:blog\" \"npm run dev:dashboard\"",
+    "dev:utils": "npm run dev -w @monorepo/utils",
+    "dev:blog": "npm run dev -w @monorepo/blog",
+    "dev:dashboard": "npm run dev -w @monorepo/dashboard"
+    },
+
+    ```
+
+11. share code between a library and applications, install `@monorepo/utils` into other projects `npm i @monorepo/utils --save -w @monorepo/dashboard -w @monorepo/blog;`
+12. add `check` and `typecheck` in `package.json`
